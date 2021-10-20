@@ -7,7 +7,7 @@ import 'jest-styled-components';
 
 import { Grommet } from '../../Grommet';
 import { Box } from '../../Box';
-import { Chart, calcs } from '..';
+import { Chart, calcs, Values } from '..';
 
 const VALUES = [
   { value: [1, 60], label: 'sixty' },
@@ -20,7 +20,7 @@ const UNDEFINED_VALUES = [
   { value: [0, 0], label: 'zero' },
 ];
 
-const STYLED_VALUES = [
+const STYLED_VALUES: Values = [
   {
     value: [1, 60],
     label: 'sixty',

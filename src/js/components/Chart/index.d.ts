@@ -10,6 +10,20 @@ import {
   ThicknessType,
 } from '../../utils';
 
+export type Values = (
+  | number
+  | number[]
+  | {
+      color?: ColorType;
+      label?: string;
+      onClick?: (...args: any[]) => any;
+      onHover?: (...args: any[]) => any;
+      opacity?: 'weak' | 'medium' | 'strong' | boolean | number;
+      thickness?: ThicknessType;
+      value: number | (number | undefined)[];
+    }
+)[];
+
 export interface ChartProps {
   a11yTitle?: A11yTitleType;
   alignSelf?: AlignSelfType;
@@ -81,21 +95,26 @@ export interface ChartProps {
     | string;
   thickness?: ThicknessType;
   type?: 'bar' | 'line' | 'area' | 'point';
-  values: (
-    | number
-    | number[]
-    | {
-        color?: ColorType;
-        label?: string;
-        onClick?: (...args: any[]) => any;
-        onHover?: (...args: any[]) => any;
-        opacity?: 'weak' | 'medium' | 'strong' | boolean | number;
-        thickness?: ThicknessType;
-        value: number | number[];
-      }
-  )[];
+  values: Values;
 }
 
 declare const Chart: React.FC<ChartProps>;
+declare const calcs: (
+  values: Values,
+  options?: {
+    steps?: number[];
+    bounds?: number[][];
+    min?: number;
+    max?: number;
+    thickness: ThicknessType;
+    coarseness?: any[] | number;
+  },
+) => {
+  axis: number[][];
+  bounds: number[][];
+  dimensions: number[];
+  pad: string;
+  thickness: ThicknessType;
+};
 
-export { Chart };
+export { calcs, Chart };

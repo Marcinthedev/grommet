@@ -290,6 +290,7 @@ const DataChart = forwardRef(
       }
 
       return chartValues.map((values, index) => {
+        console.log(`values`, values);
         const calcValues = charts[index].type === 'bars' ? values[0] : values;
         return calcs(calcValues, { bounds: chartBounds[index], steps });
       });
